@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunicação e Marketing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Configurações gerais da página */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f7faff; /* Fundo azul bem claro */
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden; /* Previne scroll horizontal das animações */
+        }
+
+        /* --- ELEMENTOS VISUAIS INTERATIVOS --- */
+        
+        /* Formas animadas no fundo */
+        .background-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .blob {
+            position: absolute;
+            background: linear-gradient(45deg, rgba(0, 51, 160, 0.1), rgba(137, 207, 240, 0.2));
+            border-radius: 50%;
+            animation: move 25s infinite alternate ease-in-out;
+            opacity: 0.7;
+        }
+
+        .blob:nth-child(1) { width: 200px; height: 200px; top: 10%; left: 5%; animation-duration: 20s; }
+        .blob:nth-child(2) { width: 300px; height: 300px; top: 20%; right: 10%; animation-duration: 30s; animation-delay: -5s; }
+        .blob:nth-child(3) { width: 150px; height: 150px; bottom: 15%; left: 20%; animation-duration: 25s; }
+        .blob:nth-child(4) { width: 250px; height: 250px; bottom: 5%; right: 25%; animation-duration: 35s; animation-delay: -10s; }
+
+        @keyframes move {
+            from { transform: translate(-20px, 30px) rotate(-10deg) scale(1); }
+            to { transform: translate(40px, -50px) rotate(20deg) scale(1.1); }
+        }
+
+        /* Título Principal com Gradiente Animado */
+        h1 {
+            font-family: "Futura Extra Black", "Montserrat", sans-serif;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 900;
+            font-size: 2.8em;
+            margin: 20px 0 40px 0;
+            /* Efeito de Gradiente no Texto */
+            background: linear-gradient(45deg, #0033A0, #0077B5, #4A90E2, #0033A0);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-animation 10s ease infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- ESTRUTURA PRINCIPAL --- */
+        
+        /* Container das Abas Principais */
+        .main-container {
+            width: 95%;
+            max-width: 1400px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.85); /* Fundo com leve transparência */
+            backdrop-filter: blur(10px); /* Efeito de vidro fosco */
+            border: 1px solid #dbe9ff;
+            box-shadow: 0 10px 30px rgba(0, 51, 160, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Botões das Abas Principais */
+        .main-tab-buttons {
+            display: flex;
+            background-color: #e6f0ff;
+            padding: 5px;
+        }
+
+        .main-tab-link {
+            flex: 1;
+            padding: 15px 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #0033A0;
+            cursor: pointer;
+            border: none;
+            background: none;
+            transition: all 0.3s ease;
+            text-align: center;
+            border-bottom: 4px solid transparent;
+        }
+
+        .main-tab-link:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .main-tab-link.active {
+            color: #00226C;
+            border-bottom-color: #0033A0;
+        }
+        
+        .main-tab-content {
+            display: none;
+            padding: 20px;
+        }
+
+        /* --- CONTEÚDO DO INSTAGRAM (ABAS INTERNAS) --- */
+        
+        .inner-tab-buttons {
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+            gap: 12px;
+            padding: 12px; 
+            background-color: #f0f6ff;
+            border-radius: 8px;
+        }
+        
+        .inner-tab-link {
+            background-color: #fff; border: 1px solid #dbe9ff;
+            outline: none; cursor: pointer; padding: 14px 18px; font-size: 15px; 
+            font-weight: bold; transition: all 0.2s ease-out; text-align: center;
+            border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 51, 160, 0.05);
+            min-height: 50px; display: flex; align-items: center; justify-content: center;
+        }
+        
+        .inner-tab-link:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0, 51, 160, 0.1); }
+        .inner-tab-link.active {
+            transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0, 51, 160, 0.1);
+            border-left: 5px solid #0033A0; font-weight: 900;
+        }
+        .inner-tab-content { display: none; padding: 30px 15px; border-top: 1px solid #dbe9ff; animation: fadeIn 0.5s; }
+        .inner-tab-content h3 { font-size: 1.8em; color: #0033A0; border-bottom: 2px solid #e6f0ff; padding-bottom: 10px; margin-top: 0; }
+        .inner-tab-content p { font-size: 1.1em; color: #334; margin-bottom: 20px; }
+
+        /* Cores das Abas Internas */
+        .color-1  { background-color: #0033A0; color: white; }
+        .color-2  { background-color: #CDEBFF; color: #0033A0; }
+        .color-3  { background-color: #004B8D; color: white; }
+        .color-4  { background-color: #A7D9F7; color: #00226C; }
+        .color-5  { background-color: #4A90E2; color: white; }
+        .color-6  { background-color: #E0F2F7; color: #0033A0; }
+        .color-7  { background-color: #0077B5; color: white; }
+        .color-8  { background-color: #B0E0E6; color: #00226C; }
+        .color-9  { background-color: #005A9C; color: white; }
+        .color-10 { background-color: #CDEBFF; color: #0033A0; }
+        .color-11 { background-color: #3E82C3; color: white; }
+        .color-12 { background-color: #A7D9F7; color: #00226C; }
+        .color-13 { background-color: #89CFF0; color: #00226C; }
+
+        /* --- FOTOS DOS MEMBROS --- */
+
+        .member-area {
+            margin-bottom: 40px;
+        }
+        .member-area h2 {
+            font-family: "Montserrat", sans-serif;
+            font-size: 2em;
+            color: #004B8D;
+            border-bottom: 3px solid #0077B5;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .member-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .member-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 51, 160, 0.1);
+            text-align: center;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        .member-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 51, 160, 0.15);
+        }
+
+        .photo-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #e6f0ff;
+            margin: 0 auto 15px auto;
+            border: 4px solid #fff;
+            box-shadow: 0 0 0 3px #0077B5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            color: #a7d9f7;
+        }
+
+        .member-card h4 { /* Nome do Membro */
+            margin: 10px 0 5px 0;
+            font-size: 1.2em;
+            color: #0033A0;
+        }
+
+        .member-card p { /* Cargo */
+            margin: 0;
+            font-size: 0.95em;
+            color: #556;
+            font-style: italic;
+        }
+        
+        /* Animação de FadeIn */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Media Queries para Responsividade */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .main-tab-link { font-size: 1em; padding: 12px 10px; }
+            .member-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-shapes">
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+    </div>
+
+    <h1>COMUNICAÇÃO E MARKETING</h1>
+
+    <div class="main-container">
+        <div class="main-tab-buttons">
+            <button class="main-tab-link" onclick="openMainTab(event, 'conteudo-instagram')" id="mainDefaultOpen">Conteúdo do Instagram</button>
+            <button class="main-tab-link" onclick="openMainTab(event, 'fotos-membros')">Fotos dos Membros</button>
+        </div>
+
+        <div id="conteudo-instagram" class="main-tab-content">
+            <div class="inner-tab-buttons">
+                 <button class="inner-tab-link color-1" onclick="openInnerTab(event, 'aba1')" id="innerDefaultOpen">Story de Estágio</button>
+                 <button class="inner-tab-link color-2" onclick="openInnerTab(event, 'aba2')">Story de Curiosidade</button>
+                 <button class="inner-tab-link color-3" onclick="openInnerTab(event, 'aba3')">Story de Evento</button>
+                 <button class="inner-tab-link color-4" onclick="openInnerTab(event, 'aba4')">Aniversariante</button>
+                 <button class="inner-tab-link color-5" onclick="openInnerTab(event, 'aba5')">Story melhores amigos</button>
+                 <button class="inner-tab-link color-6" onclick="openInnerTab(event, 'aba6')">Story reuniões</button>
+                 <button class="inner-tab-link color-7" onclick="openInnerTab(event, 'aba7')">Post de evento</button>
+                 <button class="inner-tab-link color-8" onclick="openInnerTab(event, 'aba8')">Post Membro do Mês</button>
+                 <button class="inner-tab-link color-9" onclick="openInnerTab(event, 'aba9')">Post de aviso</button>
+                 <button class="inner-tab-link color-10" onclick="openInnerTab(event, 'aba10')">Post de Indicação (Filmes)</button>
+                 <button class="inner-tab-link color-11" onclick="openInnerTab(event, 'aba11')">Post Temático</button>
+                 <button class="inner-tab-link color-12" onclick="openInnerTab(event, 'aba12')">Post carrossel (7 partes)</button>
+                 <button class="inner-tab-link color-13" onclick="openInnerTab(event, 'aba13')">Capa de forms</button>
+            </div>
+            
+            <div id="aba1" class="inner-tab-content">
+                <h3>Story de Estágio</h3><p>Procure de 3 a 5 vagas de estágio e publique nos stories do núcleo. As vagas podem ser das áreas de engenharia e geociências, por enquanto na UNIFEI não temos cursos voltados a agronomia.</p><a href="https://www.canva.com/design/DAGk0EJrG4I/CEHU4o56wV4P3TBAezM9oA/edit?utm_content=DAGk0EJrG4I&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template</a>
+            </div>
+            <div id="aba2" class="inner-tab-content">
+                <h3>Story de Curiosidade</h3><p>Procure uma curiosidade de sua preferência, tente colocar como primeira opção algo do mundo da engenharia.</p><a href="https://www.canva.com/design/DAGRnx4rxyA/J4Hqej6mAI4LIW0g2cjF9A/edit?utm_content=DAGRnx4rxyA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template</a>
+            </div>
+             <div id="aba3" class="inner-tab-content"> <h3>Story de Evento</h3> <p>Adicione a foto de quem irá ministrar o evento, data, local, entre outras infos. Ele é postado unico e somente no story.</p> <a href="https://www.canva.com/design/DAGzE7L0j_E/qiiCU0Nem2qVJ0n1F84_8w/edit?utm_content=DAGzE7L0j_E&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template</a> </div>
+             <div id="aba4" class="inner-tab-content"> <h3>Aniversariante</h3> <p>Adicione a foto do membro aniversariante e poste nos stories, exporte como arquivo PNG e não MP4.</p> <a href="https://www.canva.com/design/DAGfj6OuYBg/4c0RLdprnfGN1xqRNDERcQ/edit?utm_content=DAGfj6OuYBg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template</a> </div>
+             <div id="aba5" class="inner-tab-content"> <h3>Story melhores amigos</h3> <p>Em momentos propícios a interações solte da forma que quiser posts, caixas de perguntas, enquetes, entre outras interações nos MELHORES AMIGOS do instagram do núcleo.</p> <a href="https://www.canva.com/design/DAGs5zbdAQE/SjgzYrRpQnhZl-fkLwB1BQ/edit?utm_content=DAGs5zbdAQE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template</a> </div>
+             <div id="aba6" class="inner-tab-content"> <h3>Story reuniões</h3> <p>Pegue fotos das reuniões semanais de todas as áreas e jogue no template. Poste único e somente nos stories.</p> <a href="https://www.canva.com/design/DAGLusR4uRI/Ki_XCTMSQ_nC6HAQnPxxJw/edit?utm_content=DAGLusR4uRI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template</a> </div>
+             <div id="aba7" class="inner-tab-content"> <h3>Post de evento</h3> <p>Diferente do post de story, este vai ao FEED.</p> <a href="https://www.canva.com/design/DAGzEv7EaFQ/y0y4aeMS8UKY120QzcfLQw/edit?utm_content=DAGzEv7EaFQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template</a> </div>
+             <div id="aba8" class="inner-tab-content"> <h3>Post Membro do Mês</h3> <p>1 ou 2 membros são selecionados por Mês, solte o post no Feed.</p> <a href="https://www.canva.com/design/DAGzEwXS-p4/FK-rd574evxGE1ApcndC9g/edit?utm_content=DAGzEwXS-p4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template</a> </div>
+             <div id="aba9" class="inner-tab-content"> <h3>Post de aviso</h3> <p>É usado apenas em alguns casos, é mais direcionado aos alunos que participam de algum evento e não diretamente ao núcleo, se for relacionado ao núcleo, solte apenas no STORY de melhores amigos, se for a comunidade externa solte no FEED.</p> <a href="https://www.canva.com/design/DAGiBdHRL5k/VRnoxwAlxAd1pOOz-lvkWQ/edit?utm_content=DAGiBdHRL5k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template</a> </div>
+             <div id="aba10" class="inner-tab-content"> <h3>Post de Indicação (Filmes)</h3> <p>Escolha um filme de sua preferência, pegue uma sinopse e um resumo da história e aplique no template padrão. (de preferência, relacione-o com o mundo da engenharia e geociência) - Use a ferramenta PINETOOLS para dividir. Selecione a opção Vertical e em quantidade selecione 3.</p> <a href="https://www.canva.com/design/DAGfjyWnmWQ/AV-9Gqx3SvJH2vE5OctEEQ/edit?utm_content=DAGfjyWnmWQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template</a> </div>
+             <div id="aba11" class="inner-tab-content"> <h3>Post Temático</h3> <p>É usado em datas calendárias, EX: Dia das mães, Dia do Agrônomo, entre outros.</p> <a href="https://www.canva.com/design/DAGzEtuBflQ/nLf9c4QHDLwRUBvgt9lITQ/edit?utm_content=DAGzEtuBflQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template</a> </div>
+             <div id="aba12" class="inner-tab-content"> <h3>Post carrossel (7 partes)</h3> <p>Utilizado quando o evento tem várias capturas interessantes ou é de grande importância para o núcleo - Use a ferramenta PINETOOLS para dividir. Selecione a opção Vertical e em quantidade selecione 3.</p> <a href="https://www.canva.com/design/DAGq6paPruY/sfdnY8H13rNW0YD-JbAmTw/edit?utm_content=DAGq6paPruY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template</a> </div>
+             <div id="aba13" class="inner-tab-content"> <h3>Capa de forms</h3> <p>Capa de formulário do Google.</p> <a href="https://www.canva.com/design/DAGyWvxhfq4/fdSw96qILLKQNVs6X4Zx7Q/edit?utm_content=DAGyWvxhfq4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template</a> </div>
+        </div>
+
+        <div id="fotos-membros" class="main-tab-content">
+            <div class="member-area">
+                <h2>Coordenação Geral</h2>
+                <div class="member-grid">
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Otávio de Oliveira</h4> <p>Coordenador</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Victor de Faria</h4> <p>Coordenador Adjunto</p> </div>
+                </div>
+            </div>
+            
+            <div class="member-area">
+                <h2>Financeiro</h2>
+                <div class="member-grid">
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Luiz Ricardo</h4> <p>Coordenador</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Lavínia Letícia</h4> <p>Coordenadora Adjunta & Acessora</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Lucas de Souza</h4> <p>Acessor</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Theo Mertzig</h4> <p>Acessor</p> </div>
+                </div>
+            </div>
+
+            <div class="member-area">
+                <h2>Comunicação e Marketing</h2>
+                <div class="member-grid">
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Renan Costa</h4> <p>Coordenador</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Wesley Marques</h4> <p>Coordenador Adjunto</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Ana Helena</h4> <p>Acessora</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Maria Eduarda</h4> <p>Acessora</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Tainah Araújo</h4> <p>Acessora</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Tiago Costa</h4> <p>Acessor</p> </div>
+                </div>
+            </div>
+
+            <div class="member-area">
+                <h2>Projetos e Eventos</h2>
+                <div class="member-grid">
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Gabriel Nilo</h4> <p>Coordenador</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Guilherme Rodrigues</h4> <p>Coordenador Adjunto</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Camille Victoria</h4> <p>Acessora</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Carla Fernanda</h4> <p>Acessora</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Gabriella Policarpo</h4> <p>Acessora</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Gabriel Nogueira</h4> <p>Acessor</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Ícaro David</h4> <p>Acessor</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Luiz Gustavo</h4> <p>Acessor</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Thales Miguel</h4> <p>Acessor</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Willian Diego</h4> <p>Acessor</p> </div>
+                </div>
+            </div>
+            
+            <div class="member-area">
+                <h2>Gestão de Qualidade</h2>
+                <div class="member-grid">
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Isadora de Sá</h4> <p>Coordenadora</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Thalita Correa</h4> <p>Coordenadora Adjunta</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Davi Borges</h4> <p>Acessor</p> </div>
+                </div>
+            </div>
+            
+            <div class="member-area">
+                <h2>Tecnologia da Informação</h2>
+                <div class="member-grid">
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Gabriela Girão</h4> <p>Coordenadora</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Enzo Marcelino</h4> <p>Coordenador Adjunto</p> </div>
+                </div>
+            </div>
+            
+            <div class="member-area">
+                <h2>Documentos</h2>
+                <div class="member-grid">
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Fernando Lucas</h4> <p>Coordenador & Acessor</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Theo Bianco</h4> <p>Coordenador Adjunto</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Leonardo Cristofer</h4> <p>Acessor</p> </div>
+                </div>
+            </div>
+            
+            <div class="member-area">
+                <h2>Gestão de Pessoas</h2>
+                <div class="member-grid">
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Maria de Lourdes</h4> <p>Coordenadora</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Maria Clara</h4> <p>Coordenadora Adjunta</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Gabriela de Moura</h4> <p>Acessora</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Gabriel Cazita</h4> <p>Acessor</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Luiza Graves</h4> <p>Acessora</p> </div>
+                    <div class="member-card"> <div class="photo-placeholder">👤</div> <h4>Manuela Vilela</h4> <p>Acessora</p> </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <script>
+        // Função para as ABAS PRINCIPAIS
+        function openMainTab(evt, tabName) {
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("main-tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("main-tab-link");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Função para as ABAS INTERNAS (Conteúdo do Instagram)
+        function openInnerTab(evt, tabName) {
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("inner-tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("inner-tab-link");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Inicia o site com a primeira aba principal e a primeira aba interna abertas
+        document.getElementById("mainDefaultOpen").click();
+        document.getElementById("innerDefaultOpen").click();
+    </script>
+</body>
+</html>
