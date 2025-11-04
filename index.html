@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunicação e Marketing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Configurações gerais da página */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 20px;
+            /* DECORAÇÃO: Gradiente de fundo sutil */
+            background: linear-gradient(170deg, #f7faff 0%, #e6f0ff 100%);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Estilo do Título Principal */
+        h1 {
+            font-family: "Futura Extra Black", "Montserrat", sans-serif;
+            color: #0033A0; /* Cor principal */
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 900;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        /* Container principal das abas */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            border: 1px solid #dbe9ff; /* Borda azul suave */
+            /* DECORAÇÃO: Sombra mais suave */
+            box-shadow: 0 10px 25px rgba(0, 51, 160, 0.08);
+            background-color: #ffffff;
+            border-radius: 10px; 
+            overflow: hidden; 
+        }
+
+        /* Barra que segura os botões das abas */
+        .tab-buttons {
+            display: grid; 
+            /* 4 botões por linha */
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 12px; /* Espaçamento entre os botões */
+            padding: 12px; 
+            background-color: #f0f6ff; /* Fundo azul bem claro */
+        }
+
+        /* Estilo dos botões das abas */
+        .tab-link {
+            background-color: inherit;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 18px;
+            font-size: 15px; /* Ajustei para caber melhor */
+            font-weight: bold;
+            transition: all 0.2s ease-out; /* Transição mais rápida */
+            text-align: center;
+            border-bottom: 3px solid transparent;
+            border-radius: 8px; /* Cantos arredondados */
+            box-shadow: 0 2px 4px rgba(0, 51, 160, 0.1); /* Sombra azul sutil */
+            min-width: 150px; 
+            height: 50px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden; 
+            white-space: nowrap; 
+            text-overflow: ellipsis; 
+        }
+
+        /* Efeito ao passar o mouse */
+        .tab-link:hover {
+            transform: scale(1.03); /* Aumenta um pouco */
+            box-shadow: 0 8px 16px rgba(0, 51, 160, 0.15); /* Sombra mais pronunciada */
+            z-index: 1; 
+        }
+
+        /* Estilo do botão da aba ativa */
+        .tab-link.active {
+            border-bottom: 3px solid #0033A0; /* Marca a aba ativa */
+            transform: scale(1.03); 
+            box-shadow: 0 8px 16px rgba(0, 51, 160, 0.15); 
+            /* DECORAÇÃO: Satura um pouco mais a cor da aba ativa */
+            filter: brightness(1.05) saturate(1.1);
+        }
+
+        /* Conteúdo da aba */
+        .tab-content {
+            display: none; /* Escondido por padrão */
+            padding: 30px 25px;
+            border-top: 1px solid #dbe9ff; /* Linha divisória azul suave */
+            animation: fadeIn 0.5s; 
+        }
+
+        .tab-content h3 {
+            font-size: 1.8em;
+            color: #0033A0; /* Título da aba em azul */
+            border-bottom: 2px solid #e6f0ff;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .tab-content p {
+            font-size: 1.1em;
+            color: #334;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo do link para o Canva */
+        .canva-link {
+            display: inline-block;
+            margin-top: 5px; 
+            padding: 12px 20px;
+            background-color: #0033A0; 
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 51, 160, 0.2);
+        }
+
+        .canva-link:hover {
+            background-color: #00226C; 
+            transform: translateY(-2px); /* Efeito de "levantar" */
+            box-shadow: 0 6px 12px rgba(0, 51, 160, 0.3);
+        }
+
+        /* Animação de fade-in */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+
+        /* -------------------------------------
+         CORES DAS ABAS (APENAS TONS DE AZUL)
+        -------------------------------------
+        */
+
+        .color-1  { background-color: #0033A0; color: white; }
+        .color-2  { background-color: #CDEBFF; color: #0033A0; } /* Era Amarelo */
+        .color-3  { background-color: #004B8D; color: white; }
+        .color-4  { background-color: #A7D9F7; color: #00226C; } /* Era Amarelo */
+        .color-5  { background-color: #4A90E2; color: white; }
+        .color-6  { background-color: #E0F2F7; color: #0033A0; } /* Era Amarelo */
+        .color-7  { background-color: #0077B5; color: white; }
+        .color-8  { background-color: #B0E0E6; color: #00226C; } /* Era Amarelo */
+        .color-9  { background-color: #005A9C; color: white; }
+        .color-10 { background-color: #CDEBFF; color: #0033A0; } /* Era Amarelo */
+        .color-11 { background-color: #3E82C3; color: white; }
+        .color-12 { background-color: #A7D9F7; color: #00226C; } /* Era Amarelo */
+        .color-13 { background-color: #89CFF0; color: #00226C; } /* Era Amarelo Claro */
+
+
+        /* SEÇÃO DA LOGO E CURVAS */
+        .logo-section {
+            position: relative;
+            width: 100%;
+            padding: 80px 20px; 
+            background-color: #e0f2f7; /* Cor de fundo suave (azul claro) */
+            text-align: center;
+            overflow: hidden; 
+            margin-top: 50px; 
+        }
+
+        .logo-section::before,
+        .logo-section::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100px; 
+            background: currentColor; 
+        }
+
+        .logo-section::before {
+            top: 0;
+            border-radius: 0 0 50% 50% / 0 0 100% 100%; 
+            background-color: #a7d9f7; /* Curva azul médio */
+            transform: translateY(-50%); 
+        }
+
+        .logo-section::after {
+            bottom: 0;
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0; 
+            background-color: #0033A0; /* Curva azul escuro principal */
+            transform: translateY(50%); 
+        }
+
+        .logo-wrapper {
+            position: relative; 
+            z-index: 10;
+            display: inline-block; 
+            background-color: white; 
+            padding: 15px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 51, 160, 0.15);
+        }
+
+        .logo-wrapper img {
+            max-width: 200px; /* Tamanho máximo da sua logo */
+            height: auto;
+            display: block; 
+            margin: 0 auto; 
+        }
+
+        /* Media queries para responsividade */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            .tab-buttons {
+                /* 3 botões por linha */
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+            }
+            .tab-link {
+                height: 45px;
+                font-size: 15px;
+            }
+            .logo-wrapper img {
+                max-width: 150px;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .tab-buttons {
+                /* 2 botões por linha */
+                grid-template-columns: repeat(2, 1fr); 
+            }
+            .tab-link {
+                height: 40px;
+                font-size: 14px;
+            }
+             h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+    </head>
+<body>
+
+    <h1>COMUNICAÇÃO E MARKETING</h1>
+
+    <div class="container">
+        <div class="tab-buttons">
+            <button class="tab-link color-1" onclick="openTab(event, 'aba1')" id="defaultOpen">Story de Estágio</button>
+            <button class="tab-link color-2" onclick="openTab(event, 'aba2')">Story de Curiosidade</button>
+            <button class="tab-link color-3" onclick="openTab(event, 'aba3')">Story de Evento</button>
+            <button class="tab-link color-4" onclick="openTab(event, 'aba4')">Aniversariante</button>
+            <button class="tab-link color-5" onclick="openTab(event, 'aba5')">Story melhores amigos</button>
+            <button class="tab-link color-6" onclick="openTab(event, 'aba6')">Story reuniões</button>
+            <button class="tab-link color-7" onclick="openTab(event, 'aba7')">Post de evento</button>
+            <button class="tab-link color-8" onclick="openTab(event, 'aba8')">Post Membro do Mês</button>
+            <button class="tab-link color-9" onclick="openTab(event, 'aba9')">Post de aviso</button>
+            <button class="tab-link color-10" onclick="openTab(event, 'aba10')">Post de Indicação (Filmes)</button>
+            <button class="tab-link color-11" onclick="openTab(event, 'aba11')">Post Temático</button>
+            <button class="tab-link color-12" onclick="openTab(event, 'aba12')">Post carrossel (7 partes)</button>
+            <button class="tab-link color-13" onclick="openTab(event, 'aba13')">Capa de forms</button>
+        </div>
+
+        <div id="aba1" class="tab-content">
+            <h3>Story de Estágio</h3>
+            <p>Procure de 3 a 5 vagas de estágio e publique nos stories do núcleo. As vagas podem ser das áreas de engenharia e geociências, por enquanto na UNIFEI não temos cursos voltados a agronomia.</p>
+            <a href="https://www.canva.com/design/DAGk0EJrG4I/CEHU4o56wV4P3TBAezM9oA/edit?utm_content=DAGk0EJrG4I&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba2" class="tab-content">
+            <h3>Story de Curiosidade</h3>
+            <p>Procure uma curiosidade de sua preferência, tente colocar como primeira opção algo do mundo da engenharia.</p>
+            <a href="https://www.canva.com/design/DAGRnx4rxyA/J4Hqej6mAI4LIW0g2cjF9A/edit?utm_content=DAGRnx4rxyA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba3" class="tab-content">
+            <h3>Story de Evento</h3>
+            <p>Adicione a foto de quem irá ministrar o evento, data, local, entre outras infos. Ele é postado único e somente no story.</p>
+            <a href="https://www.canva.com/design/DAGzE7L0j_E/qiiCU0Nem2qVJ0n1F84_8w/edit?utm_content=DAGzE7L0j_E&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba4" class="tab-content">
+            <h3>Aniversariante</h3>
+            <p>Adicione a foto do membro aniversariante e poste nos stories, exporte como arquivo PNG e não MP4.</p>
+            <a href="https://www.canva.com/design/DAGfj6OuYBg/4c0RLdprnfGN1xqRNDERcQ/edit?utm_content=DAGfj6OuYBg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba5" class="tab-content">
+            <h3>Story melhores amigos</h3>
+            <p>Em momentos propícios a interações solte da forma que quiser posts, caixas de perguntas, enquetes, entre outras interações nos MELHORES AMIGOS do instagram do núcleo.</p>
+            <a href="https://www.canva.com/design/DAGs5zbdAQE/SjgzYrRpQnhZl-fkLwB1BQ/edit?utm_content=DAGs5zbdAQE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba6" class="tab-content">
+            <h3>Story reuniões</h3>
+            <p>Pegue fotos das reuniões semanais de todas as áreas e jogue no template. Poste único e somente nos stories.</p>
+            <a href="https://www.canva.com/design/DAGLusR4uRI/Ki_XCTMSQ_nC6HAQnPxxJw/edit?utm_content=DAGLusR4uRI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba7" class="tab-content">
+            <h3>Post de evento</h3>
+            <p>Diferente do post de story, este vai ao FEED.</p>
+            <a href="https://www.canva.com/design/DAGzEv7EaFQ/y0y4aeMS8UKY120QzcfLQw/edit?utm_content=DAGzEv7EaFQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba8" class="tab-content">
+            <h3>Post Membro do Mês</h3>
+            <p>1 ou 2 membros são selecionados por Mês, solte o post no Feed.</p>
+            <a href="https://www.canva.com/design/DAGzEwXS-p4/FK-rd574evxGE1ApcndC9g/edit?utm_content=DAGzEwXS-p4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba9" class="tab-content">
+            <h3>Post de aviso</h3>
+            <p>É usado apenas em alguns casos, é mais direcionado aos alunos que participam de algum evento e não diretamente ao núcleo, se for relacionado ao núcleo, solte apenas no STORY de melhores amigos, se for a comunidade externa solte no FEED.</p>
+            <a href="https://www.canva.com/design/DAGiBdHRL5k/VRnoxwAlxAd1pOOz-lvkWQ/edit?utm_content=DAGiBdHRL5k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba10" class="tab-content">
+            <h3>Post de Indicação (Filmes)</h3>
+            <p>Escolha um filme de sua preferência, pegue uma sinopse e um resumo da história e aplique no template padrão. (de preferência, relacione-o com o mundo da engenharia e geociência) - Use a ferramenta PINETOOLS para dividir. Selecione a opção Vertical e em quantidade selecione 3.</p>
+            <a href="https://www.canva.com/design/DAGfjyWnmWQ/AV-9Gqx3SvJH2vE5OctEEQ/edit?utm_content=DAGfjyWnmWQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba11" class="tab-content">
+            <h3>Post Temático</h3>
+            <p>É usado em datas calendárias, EX: Dia das mães, Dia do Agrônomo, entre outros.</p>
+            <a href="https://www.canva.com/design/DAGzEtuBflQ/nLf9c4QHDLwRUBvgt9lITQ/edit?utm_content=DAGzEtuBflQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba12" class="tab-content">
+            <h3>Post carrossel (7 partes)</h3>
+            <p>Utilizado quando o evento tem várias capturas interessantes ou é de grande importância para o núcleo - Use a ferramenta PINETOOLS para dividir. Selecione a opção Vertical e em quantidade selecione 3.</p>
+            <a href="https://www.canva.com/design/DAGq6paPruY/sfdnY8H13rNW0YD-JbAmTw/edit?utm_content=DAGq6paPruY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba13" class="tab-content">
+            <h3>Capa de forms</h3>
+            <p
