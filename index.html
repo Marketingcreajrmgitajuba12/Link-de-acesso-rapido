@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunicação e Marketing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Configurações gerais da página */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            line-height: 1.6;
+        }
+
+        /* Estilo do Título Principal */
+        h1 {
+            font-family: "Futura Extra Black", "Montserrat", sans-serif;
+            color: #0033A0; /* Cor solicitada */
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 900; /* Super negrito */
+            font-size: 2.5em; /* Tamanho do título */
+            margin-bottom: 30px;
+        }
+
+        /* Container principal das abas */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            background-color: #ffffff;
+        }
+
+        /* Barra que segura os botões das abas */
+        .tab-buttons {
+            overflow: hidden;
+            background-color: #f1f1f1;
+            display: flex;
+            flex-wrap: wrap; /* Permite que os botões quebrem a linha em telas pequenas */
+        }
+
+        /* Estilo dos botões das abas */
+        .tab-link {
+            background-color: inherit;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 18px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+            flex-grow: 1; /* Faz os botões preencherem o espaço */
+            text-align: center;
+            border-bottom: 3px solid transparent;
+        }
+
+        /* Efeito ao passar o mouse */
+        .tab-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Estilo do botão da aba ativa */
+        .tab-link.active {
+            border-bottom: 3px solid #0033A0; /* Marca a aba ativa com a cor do título */
+            filter: brightness(1.1); /* Deixa a cor um pouco mais clara */
+        }
+
+        /* Conteúdo da aba */
+        .tab-content {
+            display: none; /* Escondido por padrão */
+            padding: 30px 25px;
+            border-top: 1px solid #ddd;
+            animation: fadeIn 0.5s; /* Efeito de transição */
+        }
+
+        .tab-content h3 {
+            font-size: 1.8em;
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .tab-content p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Estilo do link para o Canva */
+        .canva-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background-color: #0033A0; /* Cor azul principal */
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .canva-link:hover {
+            background-color: #00226C; /* Um azul um pouco mais escuro */
+        }
+
+        /* Animação de fade-in */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+
+        /* CORES DAS ABAS */
+        .color-1  { background-color: #0033A0; color: white; }
+        .color-2  { background-color: #FFD700; color: #333; }
+        .color-3  { background-color: #004B8D; color: white; }
+        .color-4  { background-color: #FFC72C; color: #333; }
+        .color-5  { background-color: #4A90E2; color: white; }
+        .color-6  { background-color: #F7B500; color: #333; }
+        .color-7  { background-color: #0077B5; color: white; }
+        .color-8  { background-color: #FFEC8B; color: #333; }
+        .color-9  { background-color: #005A9C; color: white; }
+        .color-10 { background-color: #FDEE00; color: #333; }
+        .color-11 { background-color: #3E82C3; color: white; }
+        .color-12 { background-color: #FFBF00; color: #333; }
+        .color-13 { background-color: #89CFF0; color: #333; }
+
+    </style>
+    </head>
+<body>
+
+    <h1>COMUNICAÇÃO E MARKETING</h1>
+
+    <div class="container">
+        <div class="tab-buttons">
+            <button class="tab-link color-1" onclick="openTab(event, 'aba1')" id="defaultOpen">Story de Estágio</button>
+            <button class="tab-link color-2" onclick="openTab(event, 'aba2')">Story de Curiosidade</button>
+            <button class="tab-link color-3" onclick="openTab(event, 'aba3')">Story de Evento</button>
+            <button class="tab-link color-4" onclick="openTab(event, 'aba4')">Aniversariante</button>
+            <button class="tab-link color-5" onclick="openTab(event, 'aba5')">Story melhores amigos</button>
+            <button class="tab-link color-6" onclick="openTab(event, 'aba6')">Story reuniões</button>
+            <button class="tab-link color-7" onclick="openTab(event, 'aba7')">Post de evento</button>
+            <button class="tab-link color-8" onclick="openTab(event, 'aba8')">Post Membro do Mês</button>
+            <button class="tab-link color-9" onclick="openTab(event, 'aba9')">Post de aviso</button>
+            <button class="tab-link color-10" onclick="openTab(event, 'aba10')">Post de Indicação (Filmes)</button>
+            <button class="tab-link color-11" onclick="openTab(event, 'aba11')">Post Temático</button>
+            <button class="tab-link color-12" onclick="openTab(event, 'aba12')">Post carrossel (7 partes)</button>
+            <button class="tab-link color-13" onclick="openTab(event, 'aba13')">Capa de forms</button>
+        </div>
+
+        <div id="aba1" class="tab-content">
+            <h3>Story de Estágio</h3>
+            <p>Procure de 3 a 5 vagas de estágio e publique nos stories do núcleo. As vagas podem ser das áreas de engenharia e geociências, por enquanto na UNIFEI não temos cursos voltados a agronomia.</p>
+            <a href="https://www.canva.com/design/DAGk0EJrG4I/CEHU4o56wV4P3TBAezM9oA/edit?utm_content=DAGk0EJrG4I&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba2" class="tab-content">
+            <h3>Story de Curiosidade</h3>
+            <p>Procure uma curiosidade de sua preferência, tente colocar como primeira opção algo do mundo da engenharia.</p>
+            <a href="https://www.canva.com/design/DAGRnx4rxyA/J4Hqej6mAI4LIW0g2cjF9A/edit?utm_content=DAGRnx4rxyA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba3" class="tab-content">
+            <h3>Story de Evento</h3>
+            <p>Adicione a foto de quem irá ministrar o evento, data, local, entre outras infos. Ele é postado único e somente no story.</p>
+            <a href="https://www.canva.com/design/DAGzE7L0j_E/qiiCU0Nem2qVJ0n1F84_8w/edit?utm_content=DAGzE7L0j_E&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba4" class="tab-content">
+            <h3>Aniversariante</h3>
+            <p>Adicione a foto do membro aniversariante e poste nos stories, exporte como arquivo PNG e não MP4.</p>
+            <a href="https://www.canva.com/design/DAGfj6OuYBg/4c0RLdprnfGN1xqRNDERcQ/edit?utm_content=DAGfj6OuYBg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba5" class="tab-content">
+            <h3>Story melhores amigos</h3>
+            <p>Em momentos propícios a interações solte da forma que quiser posts, caixas de perguntas, enquetes, entre outras interações nos MELHORES AMIGOS do instagram do núcleo.</p>
+            <a href="https://www.canva.com/design/DAGs5zbdAQE/SjgzYrRpQnhZl-fkLwB1BQ/edit?utm_content=DAGs5zbdAQE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba6" class="tab-content">
+            <h3>Story reuniões</h3>
+            <p>Pegue fotos das reuniões semanais de todas as áreas e jogue no template. Poste único e somente nos stories.</p>
+            <a href="https://www.canva.com/design/DAGLusR4uRI/Ki_XCTMSQ_nC6HAQnPxxJw/edit?utm_content=DAGLusR4uRI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba7" class="tab-content">
+            <h3>Post de evento</h3>
+            <p>Diferente do post de story, este vai ao FEED.</p>
+            <a href="https://www.canva.com/design/DAGzEv7EaFQ/y0y4aeMS8UKY120QzcfLQw/edit?utm_content=DAGzEv7EaFQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba8" class="tab-content">
+            <h3>Post Membro do Mês</h3>
+            <p>1 ou 2 membros são selecionados por Mês, solte o post no Feed.</p>
+            <a href="https://www.canva.com/design/DAGzEwXS-p4/FK-rd574evxGE1ApcndC9g/edit?utm_content=DAGzEwXS-p4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba9" class="tab-content">
+            <h3>Post de aviso</h3>
+            <p>É usado apenas em alguns casos, é mais direcionado aos alunos que participam de algum evento e não diretamente ao núcleo, se for relacionado ao núcleo, solte apenas no STORY de melhores amigos, se for a comunidade externa solte no FEED.</p>
+            <a href="https://www.canva.com/design/DAGiBdHRL5k/VRnoxwAlxAd1pOOz-lvkWQ/edit?utm_content=DAGiBdHRL5k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba10" class="tab-content">
+            <h3>Post de Indicação (Filmes)</h3>
+            <p>Escolha um filme de sua preferência, pegue uma sinopse e um resumo da história e aplique no template padrão. (de preferência, relacione-o com o mundo da engenharia e geociência) - Use a ferramenta PINETOOLS para dividir. Selecione a opção Vertical e em quantidade selecione 3.</p>
+            <a href="https://www.canva.com/design/DAGfjyWnmWQ/AV-9Gqx3SvJH2vE5OctEEQ/edit?utm_content=DAGfjyWnmWQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba11" class="tab-content">
+            <h3>Post Temático</h3>
+            <p>É usado em datas calendárias, EX: Dia das mães, Dia do Agrônomo, entre outros.</p>
+            <a href="https://www.canva.com/design/DAGzEtuBflQ/nLf9c4QHDLwRUBvgt9lITQ/edit?utm_content=DAGzEtuBflQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba12" class="tab-content">
+            <h3>Post carrossel (7 partes)</h3>
+            <p>Utilizado quando o evento tem várias capturas interessantes ou é de grande importância para o núcleo - Use a ferramenta PINETOOLS para dividir. Selecione a opção Vertical e em quantidade selecione 3.</p>
+            <a href="https://www.canva.com/design/DAGq6paPruY/sfdnY8H13rNW0YD-JbAmTw/edit?utm_content=DAGq6paPruY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+
+        <div id="aba13" class="tab-content">
+            <h3>Capa de forms</h3>
+            <p>[Adicione sua descrição aqui...]</p>
+            <a href="https://canva.com/seu-link-aqui-13" class="canva-link" target="_blank">Acessar Template no Canva</a>
+        </div>
+    </div> <script>
+        // Função que é chamada ao clicar em qualquer botão de aba
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+
+            // 1. Esconde todos os painéis de conteúdo
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // 2. Remove a classe "active" de todos os botões
+            tablinks = document.getElementsByClassName("tab-link");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // 3. Mostra o painel de conteúdo da aba clicada
+            document.getElementById(tabName).style.display = "block";
+            
+            // 4. Adiciona a classe "active" ao botão que foi clicado
+            evt.currentTarget.className += " active";
+        }
+
+        // --- CÓDIGO DE INICIALIZAÇÃO CORRIGIDO ---
+        // Em vez de simular um clique, nós manualmente
+        // mostramos a primeira aba e ativamos o primeiro botão.
+        
+        // 1. Mostra o conteúdo da primeira aba (que tem o ID "aba1")
+        document.getElementById("aba1").style.display = "block";
+        
+        // 2. Adiciona a classe "active" ao primeiro botão (que tem o ID "defaultOpen")
+        document.getElementById("defaultOpen").className += " active";
+        
+    </script>
+    </body>
+</html>
