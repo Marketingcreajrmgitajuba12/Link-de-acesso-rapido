@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea Jr-MG | Núcleo Itajubá</title>
+
+    <style>
+        /* --- ESTILOS GERAIS --- */
+        body { margin: 0; font-family: Arial, Helvetica, sans-serif; background-color: #f5f5f5; color: #333; }
+        header { background-color: #0b7a3c; color: white; padding: 20px; text-align: center; }
+        header h1 { margin: 0; }
+        
+        /* --- NAVEGAÇÃO --- */
+        nav { background-color: #095f30; display: flex; justify-content: center; flex-wrap: wrap; }
+        nav button { background: none; border: none; color: white; padding: 15px 20px; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        nav button:hover { background-color: #0b7a3c; }
+
+        /* --- CONTEÚDO --- */
+        .container { max-width: 1100px; margin: auto; padding: 20px; }
+        .tab-content { display: none; animation: fadeIn 0.5s; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        h2 { color: #0b7a3c; margin-bottom: 10px; border-bottom: 2px solid #0b7a3c; padding-bottom: 5px; display: inline-block; }
+
+        /* --- CARDS DOS MEMBROS --- */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 20px; }
+        .member-card { background-color: white; border-radius: 10px; padding: 15px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .member-photo { width: 120px; height: 120px; object-fit: cover; border-radius: 50%; margin-bottom: 10px; border: 3px solid #0b7a3c; }
+        .member-card h4 { margin: 10px 0 5px; color: #095f30; }
+        .member-card p { margin: 0; font-size: 14px; color: #555; }
+
+        .download-btn { display: inline-block; margin-top: 10px; padding: 6px 12px; background-color: #0b7a3c; color: white; text-decoration: none; border-radius: 5px; font-size: 13px; }
+        .download-btn:hover { background-color: #095f30; }
+
+        /* --- ÁREA DO CRONOGRAMA DINÂMICO --- */
+        .cronograma-container {
+            position: relative;
+            width: 100%;
+            /* Ajuste a altura conforme necessário (56.25% = 16:9). Se for quadrado, use 100% */
+            padding-bottom: 56.25%; 
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background-color: #e0e0e0;
+        }
+        
+        .cronograma-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Instrução temporária */
+        .aviso-config {
+            background: #fff3cd; color: #856404; padding: 15px; border-radius: 5px; border: 1px solid #ffeeba; margin-bottom: 20px; text-align: center;
+        }
+
+        footer { background-color: #0b7a3c; color: white; text-align: center; padding: 15px; margin-top: 40px; }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Crea Jr-MG – Núcleo Itajubá</h1>
+    <p>Gestão 2025</p>
+</header>
+
+<nav>
+    <button onclick="openTab('inicio')">Início</button>
+    <button onclick="openTab('diretoria')">Diretoria</button>
+    <button onclick="openTab('financeiro')">Financeiro</button>
+    <button onclick="openTab('qualidade')">Gestão da Qualidade</button>
+    <button onclick="openTab('cronograma')">Cronograma</button>
+</nav>
+
+<div class="container">
+
+    <div id="inicio" class="tab-content active">
+        <h2>Bem-vindo!</h2>
+        <p>Esta página reúne informações da gestão do Crea Jr-MG – Núcleo Itajubá, incluindo diretoria, assessores e cronograma semanal de atividades.</p>
+    </div>
+
+    <div id="diretoria" class="tab-content">
+        <h2>Diretoria</h2>
+        <div class="team-grid">
+            <div class="member-card">
+                <h4>Presidência</h4>
+                <p>(informação conforme sua gestão)</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="financeiro" class="tab-content">
+        <h2>Financeiro</h2>
+        <div class="team-grid">
+            <div class="member-card">
+                <img src="https://raw.githubusercontent.com/Marketingcreajrmgitajuba12/Link-de-acesso-rapido/main/Luiz%20Ricardo.JPG" alt="Foto de Luiz Ricardo" class="member-photo">
+                <h4>Luiz Ricardo</h4>
+                <p>Coordenador Financeiro</p>
+                <a href="https://raw.githubusercontent.com/Marketingcreajrmgitajuba12/Link-de-acesso-rapido/main/Luiz%20Ricardo.JPG" download class="download-btn">Baixar Foto</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="qualidade" class="tab-content">
+        <h2>Gestão da Qualidade</h2>
+        <div class="team-grid">
+            <div class="member-card">
+                <img src="https://raw.githubusercontent.com/Marketingcreajrmgitajuba12/Link-de-acesso-rapido/main/IMG_0020.JPG" alt="Foto de Leonardo Cristofer" class="member-photo">
+                <h4>Leonardo Cristofer</h4>
+                <p>Assessor de Qualidade</p>
+                <a href="https://raw.githubusercontent.com/Marketingcreajrmgitajuba12/Link-de-acesso-rapido/main/IMG_0020.JPG" download class="download-btn">Baixar Foto</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="cronograma" class="tab-content">
+        <h2>Cronograma da Semana</h2>
+        
+        <div class="aviso-config">
+            <strong>Configuração Necessária:</strong> Substitua o link do iframe abaixo pelo link do seu Google Apresentações ou Canva (Publicar na Web).
+        </div>
+
+        <div class="cronograma-container">
+            <iframe 
+                src="https://docs.google.com/presentation/d/e/2PACX-1vR6f-idQu44YtM3Y_XQ_b31g3WcK1yFj5z_placeholder/embed?start=false&loop=false&delayms=3000" 
+                frameborder="0" 
+                allowfullscreen="true" 
+                mozallowfullscreen="true" 
+                webkitallowfullscreen="true">
+            </iframe>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2025 – Crea Jr-MG | Núcleo Itajubá</p>
+</footer>
+
+<script>
+    function openTab(tabId) {
+        const tabs = document.querySelectorAll('.tab-content');
+        tabs.forEach(tab => tab.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+    }
+</script>
+
+</body>
+</html>
