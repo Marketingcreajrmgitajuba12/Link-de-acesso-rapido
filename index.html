@@ -306,7 +306,7 @@
             background: #004B8D;
         }
         
-        /* --- CRONOGRAMA --- */
+        /* --- CRONOGRAMA (ATUALIZADO) --- */
         
         .schedule-container {
             width: 100%;
@@ -316,14 +316,47 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 51, 160, 0.1);
+            text-align: center;
+            background-color: white;
+            padding-bottom: 10px;
         }
         .schedule-container img {
             width: 100%;
+            height: auto;
             display: block;
         }
         
         #cronograma h2 { text-align: center; color: #0033A0; }
-        #cronograma p { text-align: center; font-style: italic; color: #556; }
+        
+        /* Estilo dos botões do cronograma */
+        .schedule-controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .action-btn {
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 5px;
+            transition: 0.3s;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .btn-add {
+            background-color: #28a745; /* Verde Sucesso */
+        }
+        .btn-add:hover { background-color: #218838; }
+
+        .btn-remove {
+            background-color: #dc3545; /* Vermelho Alerta */
+        }
+        .btn-remove:hover { background-color: #c82333; }
         
         /* --- RODAPÉ --- */
         .site-footer {
@@ -714,9 +747,17 @@
         
         <div id="cronograma" class="main-tab-content">
             <h2>Cronograma da Semana</h2>
-            <p>O cronograma da semana está disponível abaixo. (Para atualizar, edite o link no `index.html`.)</p>
+            
+            <div class="schedule-controls">
+                <input type="file" id="inputArquivo" accept="image/*" style="display: none;">
+                
+                <button class="action-btn btn-add" onclick="acionarInput()">Adicionar Cronograma</button>
+                <button class="action-btn btn-remove" id="btnRemover" onclick="removerImagem()" style="display: none;">Remover</button>
+            </div>
+
             <div class="schedule-container">
-                <img src="https://via.placeholder.com/1200x800/e6f0ff/0033A0?text=Cole+o+link+da+imagem+do+cronograma+aqui" alt="Cronograma da Semana">
+                <p id="avisoVazio" style="padding: 20px; color: #777;">Nenhum cronograma adicionado ainda.</p>
+                <img id="imgCronograma" src="" alt="Cronograma da Semana" style="display: none;">
             </div>
         </div>
         
@@ -749,7 +790,7 @@
         document.getElementById("mainDefaultOpen").click();
 
         
-        // --- NOVO: LÓGICA DO ACORDEÃO ---
+        // --- LÓGICA DO ACORDEÃO ---
         document.addEventListener("DOMContentLoaded", () => {
             const accordionButtons = document.querySelectorAll(".accordion-button");
 
@@ -781,6 +822,69 @@
                 });
             });
         });
+
+        // --- NOVA LÓGICA: CRONOGRAMA COM UPLOAD ---
+        const inputArquivo = document.getElementById('inputArquivo');
+        const imgCronograma = document.getElementById('imgCronograma');
+        const btnRemover = document.getElementById('btnRemover');
+        const avisoVazio = document.getElementById('avisoVazio');
+
+        // 1. Verifica se já tem uma imagem salva ao carregar a página
+        window.addEventListener('load', function() {
+            const imagemSalva = localStorage.getItem('minhaFotoCronograma');
+            if (imagemSalva) {
+                mostrarImagem(imagemSalva);
+            }
+        });
+
+        // 2. Função para simular o clique no input file escondido
+        function acionarInput() {
+            inputArquivo.click();
+        }
+
+        // 3. Quando o usuário escolhe uma foto
+        inputArquivo.addEventListener('change', function() {
+            const arquivo = this.files[0];
+            
+            if (arquivo) {
+                const leitor = new FileReader();
+
+                leitor.onload = function(e) {
+                    const resultadoBase64 = e.target.result;
+                    
+                    // Salva no LocalStorage (memória do navegador)
+                    try {
+                        localStorage.setItem('minhaFotoCronograma', resultadoBase64);
+                        mostrarImagem(resultadoBase64);
+                    } catch (erro) {
+                        alert("A imagem é muito grande para salvar! Tente uma imagem menor (compactada).");
+                    }
+                }
+
+                leitor.readAsDataURL(arquivo);
+            }
+        });
+
+        // 4. Função para atualizar a tela com a imagem
+        function mostrarImagem(src) {
+            imgCronograma.src = src;
+            imgCronograma.style.display = "block"; 
+            btnRemover.style.display = "inline-block"; 
+            avisoVazio.style.display = "none";
+        }
+
+        // 5. Função para remover a imagem
+        function removerImagem() {
+            if(confirm("Tem certeza que deseja remover o cronograma?")) {
+                localStorage.removeItem('minhaFotoCronograma');
+                
+                imgCronograma.src = "";
+                imgCronograma.style.display = "none";
+                btnRemover.style.display = "none";
+                avisoVazio.style.display = "block";
+                inputArquivo.value = ""; 
+            }
+        }
     </script>
 </body>
 </html>
